@@ -1,0 +1,38 @@
+const axios = require('axios');
+const db = require('../models');
+
+const Time = db.time;
+
+module.exports.getTimes = async (req, res) => {
+  axios
+    .get('https://api.pray.zone/v2/times/this_week.json?city=lahore')
+    .then((response) => {
+      const time = [];
+      const City = response.data.results.location.city;
+      const Country = response.data.results.location.country;
+      const Juristic = response.data.results.settings.juristic;
+      const DateTime = response.data.results.datetime;
+
+      DateTime.forEach((dt) => {
+        console.log(dt.date.timestamp);
+        time.push({
+          fajr: dt.times.Fajr,
+          dhuhr: dt.times.Dhuhr,
+          asr: dt.times.Asr,
+          maghrib: dt.times.Maghrib,
+          isha: dt.times.Isha,
+          timeStamp: dt.date.timestamp,
+          gregorian: dt.date.gregorian,
+          city: City,
+          country: Country,
+          juristic: Juristic,
+        });
+      });
+      //   console.log(time);
+      res.json(time);
+      Time.bulkCreate(time, {
+        ignoreDuplicates: true,
+      });
+    })
+    .catch((error) => console.log(error));
+};
