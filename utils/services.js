@@ -6,10 +6,9 @@ const Time = db.time;
 
 module.exports.getTimes = async (req, res) => {
   function getWeeklyPrayerTiming() {
+    Time.sequelize.truncate({ cascade: true });
     axios
-      .get(
-        'https://api.pray.zone/v2/times/this_week.json?city=lahore&juristic=1'
-      )
+      .get('https://api.pray.zone/v2/times/this_week.json?city=lahore')
       .then((response) => {
         const time = [];
         const City = response.data.results.location.city;
@@ -32,14 +31,12 @@ module.exports.getTimes = async (req, res) => {
           });
         });
         //   console.log(time);
-        res.json(time);
-        // Time.bulkCreate(time, {
-        //   ignoreDuplicates: true,
-        // });
+        res.json('Times data fetched from API');
+        Time.bulkCreate(time, {
+          ignoreDuplicates: true,
+        });
       })
       .catch((error) => console.log(error));
   }
-  cron.schedule('* * * * * 1', () => {
-    getWeeklyPrayerTiming();
-  });
+  cron.schedule('* * * * 1', getWeeklyPrayerTiming());
 };

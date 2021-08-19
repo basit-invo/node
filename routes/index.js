@@ -1,10 +1,10 @@
 const express = require('express');
-const times = require('./times');
+const user = require('./user');
 
 const router = express.Router();
 
 const routes = () => {
-  router.use(times);
+  router.use(user);
   return router;
 };
 
