@@ -3,12 +3,33 @@ require('dotenv').config();
 const express = require('express');
 const mailer = require('nodemailer');
 const cors = require('cors');
+const { WebClient } = require('@slack/web-api');
 const router = require('./routes');
 const jobWeeklyGetPrayerTime = require('./jobs/weeklyGetPrayerTime');
 const dailyPrayerTime = require('./jobs/sendDailyPrayerTime');
 
 const app = express();
 const port = 3000;
+
+Create a new instance of the WebClient class with the token read from your environment variable
+const web = new WebClient(
+  'xoxb-507084374774-2420546695847-SzU0lgjIFRraAKbuIMvXWMCa'
+);
+// The current date
+const currentTime = new Date().toTimeString();
+
+(async () => {
+  try {
+    // Use the `chat.postMessage` method to send a message from this app
+    await web.chat.postMessage({
+      channel: '#test-prayer-bot',
+      text: `The current time is ${currentTime}`,
+    });
+    console.log('Message posted!');
+  } catch (error) {
+    console.log('Slack Error', error);
+  }
+})();
 
 // Creating a transporter
 const transporter = mailer.createTransport({
