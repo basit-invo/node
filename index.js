@@ -5,6 +5,7 @@ const cors = require('cors');
 const router = require('./routes');
 const jobWeeklyGetPrayerTime = require('./jobs/weeklyGetPrayerTime');
 const jobDailyPrayerTime = require('./jobs/sendDailyPrayerTime');
+const jobSendDailyPrayerTimeGroup = require('./jobs/jobDailyPrayerTimeGroup');
 
 const app = express();
 const port = 3000;
@@ -23,10 +24,11 @@ app.use((_req, res, next) => {
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// jobDailyPrayerTime();
+jobWeeklyGetPrayerTime();
+jobDailyPrayerTime();
+jobSendDailyPrayerTimeGroup();
 
 app.get('/', (req, res) => {
-  jobWeeklyGetPrayerTime();
   res.send('Hello World!');
 });
 
