@@ -9,7 +9,7 @@ const fajrPrayerTimeGroup = (namaz, fajr) => {
       // Use the `chat.postMessage` method to send a message from this app
       await web.chat.postMessage({
         channel: '#test-prayer-bot',
-        text: `Today ${namaz} Namaz Time : ${fajr}`,
+        text: `${namaz} Namaz Time : ${fajr}`,
       });
       console.log('Message posted!');
     } catch (error) {

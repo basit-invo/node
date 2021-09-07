@@ -79,6 +79,8 @@ const prayerTimeGroup = async () => {
   });
 };
 
+prayerTimeGroup();
+
 const jobSendDailyPrayerTimeGroup = async () => {
   cron.schedule('0 0 * * *', () => {
     console.log('============Daily Group cron Job started============');
