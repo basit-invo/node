@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon index.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "make:model": "npx sequelize-cli model:generate --name prayer_time --attributes name:string"
+    "make:model": "npx sequelize-cli model:generate --name user --attributes name:string"
   },
   "keywords": [],
   "author": "",

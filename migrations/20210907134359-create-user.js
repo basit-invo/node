@@ -18,15 +18,15 @@ module.exports = {
       },
       fiqa: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      url: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       slack_id: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      channel: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

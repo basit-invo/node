@@ -19,3 +19,6 @@ const fajrPrayerTimeGroup = (namaz, fajr) => {
 };
 
 module.exports = fajrPrayerTimeGroup;
+
+// Reviews
+// Slack channel on registraion
