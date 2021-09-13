@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const db = require('../models');
+import db from '../models';
 
 const User = db.user;
 const Time = db.time;

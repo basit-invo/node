@@ -5,7 +5,7 @@ import fajrPrayerTimeGroup from '../services/getFajrPrayerTimeGroup';
 
 import { Op } from 'sequelize';
 
-const db = require('../models');
+import db from '../models';
 
 const Time = db.time;
 

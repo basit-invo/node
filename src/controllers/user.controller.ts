@@ -1,13 +1,13 @@
-const { validationResult } = require('express-validator');
-const defaultResponse = require('../utils/defaultResponse');
-const constants = require('../utils/constants');
-const responseStatus = require('../utils/responseStatus');
+import { validationResult } from 'express-validator';
+import defaultResponse from '../utils/defaultResponse';
+import constants from '../utils/constants';
+import responseStatus from '../utils/responseStatus';
 
-const db = require('../models');
+import db from '../models';
 
 const User = db.user;
 
-module.exports.create = async (req, res) => {
+export const create = async (req: any, res: any) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -30,7 +30,7 @@ module.exports.create = async (req, res) => {
       );
     }
   } catch (err) {
-    defaultResponse.error({ message: err.message }, res, responseStatus.ERROR);
+    defaultResponse.error({ message: err }, res, responseStatus.ERROR);
   }
 };
 
