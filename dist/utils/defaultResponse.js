@@ -1,26 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/no-explicit-any */
-var resultErrorObject = {
+const resultErrorObject = {
     error: false,
     message: '',
 };
-var resultSuccessObject = {};
+const resultSuccessObject = {};
 exports.default = {
-    error: function (error, res, status) {
-        if (status === void 0) { status = 500; }
+    error: (error, res, status = 500) => {
         resultErrorObject.error = true;
         resultErrorObject.message = error.message;
         resultErrorObject.data = null;
         res.status(status).json(resultErrorObject);
     },
-    success: function (message, response, res, state, token, refreshToken, tokenExpiresIn) {
-        if (token === void 0) { token = null; }
-        if (refreshToken === void 0) { refreshToken = null; }
-        if (tokenExpiresIn === void 0) { tokenExpiresIn = null; }
+    success: (message, response, res, state, token = null, refreshToken = null, tokenExpiresIn = null) => {
         resultSuccessObject.error = false;
         resultSuccessObject.message = message;
-        var status = state;
+        let status = state;
         if (response == null) {
             status = 201;
         }

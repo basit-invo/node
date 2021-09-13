@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var user_1 = __importDefault(require("./user"));
-var router = (0, express_1.Router)();
-var routes = function () {
+const express_1 = require("express");
+const user_1 = __importDefault(require("./user"));
+const router = (0, express_1.Router)();
+const routes = () => {
     router.use(user_1.default);
     return router;
 };
