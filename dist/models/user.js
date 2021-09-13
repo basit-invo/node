@@ -1,7 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+exports.default = (sequelize, DataTypes) => {
     class user extends sequelize_1.Model {
         /**
          * Helper method for defining associations.
@@ -24,3 +24,4 @@ module.exports = (sequelize, DataTypes) => {
     });
     return user;
 };
+//# sourceMappingURL=user.js.map

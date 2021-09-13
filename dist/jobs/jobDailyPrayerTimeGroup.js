@@ -16,8 +16,9 @@ const node_cron_1 = __importDefault(require("node-cron"));
 const moment_1 = __importDefault(require("moment"));
 const getFajrPrayerTimeGroup_1 = __importDefault(require("../services/getFajrPrayerTimeGroup"));
 const sequelize_1 = require("sequelize");
-const models_1 = __importDefault(require("../models"));
-const Time = models_1.default.time;
+// import db from '../models';
+const models_1 = require("../models");
+// const Time = db.time;
 //  # ┌────────────── second (optional)
 //  # │ ┌──────────── minute
 //  # │ │ ┌────────── hour
@@ -28,7 +29,7 @@ const Time = models_1.default.time;
 //  # │ │ │ │ │ │
 //  # * * * * * *
 const prayerTimeGroup = () => __awaiter(void 0, void 0, void 0, function* () {
-    const dailytime = yield Time.findOne({
+    const dailytime = yield models_1.Time.findOne({
         where: {
             city: 'Lahore',
             createdAt: { [sequelize_1.Op.gt]: (0, moment_1.default)().format('YYYY-MM-DD 00:00') },
@@ -80,3 +81,4 @@ const jobSendDailyPrayerTimeGroup = () => __awaiter(void 0, void 0, void 0, func
     });
 });
 exports.default = jobSendDailyPrayerTimeGroup;
+//# sourceMappingURL=jobDailyPrayerTimeGroup.js.map

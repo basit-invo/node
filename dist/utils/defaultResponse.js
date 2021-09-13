@@ -42,3 +42,4 @@ exports.default = {
         res.status(status).json(resultSuccessObject);
     },
 };
+//# sourceMappingURL=defaultResponse.js.map

@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const models_1 = __importDefault(require("../models"));
-const User = models_1.default.user;
-const Time = models_1.default.time;
+const models_1 = require("../models");
+// const User = db.user;
+// const Time = db.time;
 const getPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
-    const cityFiqaList = yield User.findAll({
+    const cityFiqaList = yield models_1.User.findAll({
         attributes: ['city', 'fiqa'],
         group: ['city', 'fiqa'],
     });
@@ -44,7 +44,7 @@ const getPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
                     juristic: Juristic,
                 });
             });
-            Time.bulkCreate(time, {
+            models_1.Time.bulkCreate(time, {
                 ignoreDuplicates: true,
             });
         });
@@ -54,3 +54,4 @@ const getPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
 exports.default = getPrayerTime;
 // Reviews
 // Loop in async behav promises.all()
+//# sourceMappingURL=getWeeklyPrayerTime.js.map

@@ -32,3 +32,4 @@ app.use('/api', (0, routes_1.default)());
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
+//# sourceMappingURL=index.js.map

@@ -1,32 +1,30 @@
-'use strict';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
+exports.Time = exports.User = void 0;
+const sequelize_1 = require("sequelize");
+const user_1 = __importDefault(require("./user"));
+const time_1 = __importDefault(require("./time"));
+const config_json_1 = __importDefault(require("../config/config.json"));
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
 let sequelize;
-if (config.use_env_variable) {
-    sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (config_json_1.default[env].use_env_variable) {
+    sequelize = new sequelize_1.Sequelize(process.env[config_json_1.default[env].use_env_variable], config_json_1.default[env]);
 }
 else {
-    sequelize = new Sequelize(config.database, config.username, config.password, config);
+    sequelize = new sequelize_1.Sequelize(config_json_1.default[env].database, config_json_1.default[env].username, config_json_1.default[env].password, config_json_1.default[env]);
 }
-fs.readdirSync(__dirname)
-    .filter((file) => {
-    return (file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.ts');
-})
-    .forEach((file) => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-});
-Object.keys(db).forEach((modelName) => {
-    if (db[modelName].associate) {
-        db[modelName].associate(db);
-    }
-});
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-exports.default = db;
+const db = {
+    sequelize,
+    Sequelize: sequelize_1.Sequelize,
+    User: (0, user_1.default)(sequelize, sequelize_1.DataTypes),
+    Time: (0, time_1.default)(sequelize, sequelize_1.DataTypes),
+};
+db.User.associate(db);
+db.Time.associate(db);
+const { User, Time } = db;
+exports.User = User;
+exports.Time = Time;
+//# sourceMappingURL=index.js.map

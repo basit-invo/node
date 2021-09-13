@@ -52,3 +52,4 @@ const dailyPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
 });
 exports.default = dailyPrayerTime;
+//# sourceMappingURL=sendDailyPrayerTime.js.map

@@ -30,3 +30,4 @@ const fajrPrayerTimeGroup = (namaz, fajr) => {
 exports.default = fajrPrayerTimeGroup;
 // Reviews
 // Slack channel on registraion
+//# sourceMappingURL=getFajrPrayerTimeGroup.js.map

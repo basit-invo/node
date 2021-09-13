@@ -11,3 +11,4 @@ const routes = () => {
     return router;
 };
 exports.default = routes;
+//# sourceMappingURL=index.js.map

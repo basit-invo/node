@@ -30,3 +30,4 @@ const jobWeeklyGetPrayerTime = () => __awaiter(void 0, void 0, void 0, function*
     });
 });
 exports.default = jobWeeklyGetPrayerTime;
+//# sourceMappingURL=weeklyGetPrayerTime.js.map
