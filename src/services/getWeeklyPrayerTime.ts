@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import db from '../models';
+import { User, Time } from '../models';
 
-const User = db.user;
-const Time = db.time;
+// const User = db.user;
+// const Time = db.time;
 
 const getPrayerTime = async () => {
   const cityFiqaList = await User.findAll({

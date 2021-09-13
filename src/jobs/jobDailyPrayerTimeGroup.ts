@@ -5,9 +5,11 @@ import fajrPrayerTimeGroup from '../services/getFajrPrayerTimeGroup';
 
 import { Op } from 'sequelize';
 
-import db from '../models';
+// import db from '../models';
 
-const Time = db.time;
+import { Time } from '../models';
+
+// const Time = db.time;
 
 //  # ┌────────────── second (optional)
 //  # │ ┌──────────── minute

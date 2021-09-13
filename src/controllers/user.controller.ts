@@ -3,9 +3,9 @@ import defaultResponse from '../utils/defaultResponse';
 import constants from '../utils/constants';
 import responseStatus from '../utils/responseStatus';
 
-import db from '../models';
+import { User } from '../models';
 
-const User = db.user;
+// const User = db.user;
 
 export const create = async (req: any, res: any) => {
   try {

@@ -2,7 +2,7 @@
 
 import { Model } from 'sequelize';
 
-module.exports = (sequelize: any, DataTypes: any) => {
+export default (sequelize: any, DataTypes: any) => {
   class time extends Model {
     /**
      * Helper method for defining associations.
