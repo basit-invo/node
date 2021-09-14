@@ -33,7 +33,6 @@ const prayerTimeGroup = () => __awaiter(void 0, void 0, void 0, function* () {
             // createdAt: { [Op.gt]: moment().format('YYYY-MM-DD 00:00') },
         },
     });
-    console.log(dailytime.fajr);
     const { fajr, dhuhr, asr, maghrib, isha } = dailytime;
     console.log(fajr, dhuhr, asr, maghrib, isha);
     const fajrSplit = fajr.split(':');
