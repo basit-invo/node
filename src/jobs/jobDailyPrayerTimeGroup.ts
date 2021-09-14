@@ -25,7 +25,7 @@ const prayerTimeGroup = async () => {
   const dailytime = await Time.findOne({
     where: {
       city: 'Lahore',
-      createdAt: { [Op.gt]: moment().format('YYYY-MM-DD 00:00') },
+      // createdAt: { [Op.gt]: moment().format('YYYY-MM-DD 00:00') },
     },
   });
 

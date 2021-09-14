@@ -13,9 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_cron_1 = __importDefault(require("node-cron"));
-const moment_1 = __importDefault(require("moment"));
 const getFajrPrayerTimeGroup_1 = __importDefault(require("../services/getFajrPrayerTimeGroup"));
-const sequelize_1 = require("sequelize");
 // import db from '../models';
 const models_1 = require("../models");
 // const Time = db.time;
@@ -32,9 +30,10 @@ const prayerTimeGroup = () => __awaiter(void 0, void 0, void 0, function* () {
     const dailytime = yield models_1.Time.findOne({
         where: {
             city: 'Lahore',
-            createdAt: { [sequelize_1.Op.gt]: (0, moment_1.default)().format('YYYY-MM-DD 00:00') },
+            // createdAt: { [Op.gt]: moment().format('YYYY-MM-DD 00:00') },
         },
     });
+    console.log(dailytime.fajr);
     const { fajr, dhuhr, asr, maghrib, isha } = dailytime;
     console.log(fajr, dhuhr, asr, maghrib, isha);
     const fajrSplit = fajr.split(':');
