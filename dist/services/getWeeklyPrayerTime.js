@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,14 +7,14 @@ const axios_1 = __importDefault(require("axios"));
 const models_1 = require("../models");
 // const User = db.user;
 // const Time = db.time;
-const getPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
-    const cityFiqaList = yield models_1.User.findAll({
+const getPrayerTime = async () => {
+    const cityFiqaList = await models_1.User.findAll({
         attributes: ['city', 'fiqa'],
         group: ['city', 'fiqa'],
     });
-    yield Promise.all(cityFiqaList.map((cl) => __awaiter(void 0, void 0, void 0, function* () {
-        const fetchTime = () => __awaiter(void 0, void 0, void 0, function* () {
-            const cityTime = yield axios_1.default.get(`https://api.pray.zone/v2/times/this_week.json?city=${cl.city}&fiqa=${cl.fiqa}`);
+    await Promise.all(cityFiqaList.map(async (cl) => {
+        const fetchTime = async () => {
+            const cityTime = await axios_1.default.get(`https://api.pray.zone/v2/times/this_week.json?city=${cl.city}&fiqa=${cl.fiqa}`);
             console.log('city time', cityTime.data.results.location.city);
             const time = [];
             const City = cityTime.data.results.location.city;
@@ -47,10 +38,10 @@ const getPrayerTime = () => __awaiter(void 0, void 0, void 0, function* () {
             models_1.Time.bulkCreate(time, {
                 ignoreDuplicates: true,
             });
-        });
+        };
         fetchTime();
-    })));
-});
+    }));
+};
 exports.default = getPrayerTime;
 // Reviews
 // Loop in async behav promises.all()

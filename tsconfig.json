@@ -2,18 +2,16 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
-    "resolveJsonModule": true
-  },
-  "exclude": [
-    "frontend",
-    "node_modules",
-    "./node_modules",
-    "./node_modules/*",
-    "./node_modules/@types/node/index.d.ts"
-  ],
-  "lib": ["es2015"]
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["es6"],
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "types": ["node"]
+  }
 }
