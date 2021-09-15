@@ -9,7 +9,7 @@ const db = require('../models');
 const User = db.user;
 const Time = db.time;
 
-const dailyPrayerTime = async () => {
+const dailyPrayerTime = async (namazName: string, NamazTime: string) => {
   const usersList = await User.findAll({
     attributes: ['city', 'slack_id'],
   });
@@ -37,8 +37,7 @@ const dailyPrayerTime = async () => {
         // Use the `chat.postMessage` method to send a message from this app
         await web.chat.postMessage({
           channel: c.slack_id,
-          //   channel: '#test-prayer-bot',
-          text: `Today Namaz Time Fajr : ${dailytime.fajr}, Dhuhr : ${dailytime.dhuhr}, Asr : ${dailytime.asr}, Maghrib : ${dailytime.maghrib}, Isha : ${dailytime.isha},`,
+          text: `${namazName} Namaz Time : ${NamazTime}`,
         });
         console.log('Message posted!');
       } catch (error) {
